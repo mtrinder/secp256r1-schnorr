@@ -1,6 +1,10 @@
 #include "cryptopp/keccak.h"
 #include "Schnorr.h"
 
+#include <string>
+#include <sstream>
+#include <iostream>
+
 SchnorrCPP::CCurve::CCurve()
 {
 	secretKeySet = false;
