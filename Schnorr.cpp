@@ -87,16 +87,8 @@ Integer SchnorrCPP::CCurve::GetSecretKey()
 void SchnorrCPP::CCurve::ModuloAddToHex(Integer k, Integer iL, std::vector<unsigned char>& dataBytes)
 {
     Integer ki = (k + iL).Modulo(q);
-
-    ostringstream oss;
-    oss << std::hex << ki;
-    string str = oss.str();
-    str = str.substr(0, str.size()-1);
-    //cout << str << endl; // Debug use
-
-    const char* ptr = str.data();
-    
-    dataBytes = std::vector<unsigned char>(ptr, ptr + str.length());
+    dataBytes.resize(32);
+    ki.Encode(&dataBytes[0], 32);
 }
 
 // Cumpute public child key (see BIP32) ... Ki = point(parse256(IL)) + Kpar
